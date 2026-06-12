@@ -5,198 +5,320 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Bốc bài iu đương</title>
 <style>
-  * { box-sizing: border-box; }
+* { box-sizing: border-box; }
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Inter, system-ui, sans-serif;
-    background:
-      radial-gradient(circle at top left, #ffe4ec, transparent 35%),
-      radial-gradient(circle at bottom right, #dbeafe, transparent 35%),
-      linear-gradient(135deg, #fff7ed, #fdf2f8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #3f2a35;
-    padding: 24px;
-  }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, #ffd6e8, transparent 32%),
+    radial-gradient(circle at 85% 15%, #dbeafe, transparent 34%),
+    radial-gradient(circle at 50% 90%, #fde68a, transparent 30%),
+    linear-gradient(135deg, #fff7ed, #fdf2f8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+  color: #3b2432;
+}
 
-  .app {
-    width: 100%;
-    max-width: 430px;
-    text-align: center;
-  }
+.app {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
 
-  h1 {
-    font-size: 32px;
-    margin-bottom: 6px;
-  }
+h1 {
+  margin: 0;
+  font-size: 34px;
+}
 
-  .subtitle {
-    opacity: 0.7;
-    margin-bottom: 24px;
-  }
+.subtitle {
+  margin: 8px 0 20px;
+  opacity: .68;
+  font-size: 15px;
+}
 
-  .card {
-    min-height: 280px;
-    padding: 28px;
-    border-radius: 28px;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(18px);
-    box-shadow: 0 24px 60px rgba(190, 80, 130, 0.18);
-    border: 1px solid rgba(255,255,255,0.8);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: 0.3s ease;
-  }
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,.85);
+  font-weight: 800;
+  color: #3b2432;
+  text-align: center;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 24px rgba(120, 60, 100, .08);
+}
 
-  .card:hover {
-    transform: translateY(-4px);
-  }
+.card-wrap {
+  perspective: 1000px;
+}
 
-  .tag {
-    display: inline-block;
-    align-self: center;
-    padding: 7px 14px;
-    border-radius: 999px;
-    background: #fce7f3;
-    color: #be185d;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 22px;
-  }
+.card {
+  min-height: 330px;
+  border-radius: 34px;
+  padding: 30px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: 0 28px 70px rgba(190, 80, 130, .22);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform .45s ease;
+}
 
-  .question {
-    font-size: 25px;
-    line-height: 1.35;
-    font-weight: 700;
-  }
+.card.flip {
+  transform: rotateY(180deg);
+}
 
-  .buttons {
-    margin-top: 24px;
-    display: grid;
-    gap: 12px;
-  }
+.tag {
+  align-self: center;
+  padding: 8px 15px;
+  border-radius: 999px;
+  background: #fce7f3;
+  color: #be185d;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 24px;
+}
 
-  button, select {
-    border: 0;
-    border-radius: 999px;
-    padding: 14px 18px;
-    font-size: 16px;
-    font-weight: 700;
-  }
+.question {
+  font-size: 25px;
+  line-height: 1.35;
+  font-weight: 900;
+}
 
-  button {
-    cursor: pointer;
-    background: linear-gradient(135deg, #ec4899, #8b5cf6);
-    color: white;
-    box-shadow: 0 12px 25px rgba(236, 72, 153, 0.3);
-  }
+.hint {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: .55;
+}
 
-  button.secondary {
-    background: white;
-    color: #7c2d12;
-    box-shadow: none;
-  }
+.buttons {
+  margin-top: 22px;
+  display: grid;
+  gap: 12px;
+}
 
-  select {
-    background: rgba(255,255,255,0.8);
-    color: #3f2a35;
-    text-align: center;
-  }
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 15px 18px;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
 
-  .counter {
-    margin-top: 14px;
-    font-size: 14px;
-    opacity: 0.65;
-  }
+.primary {
+  color: white;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  box-shadow: 0 14px 26px rgba(236,72,153,.32);
+}
+
+.secondary {
+  background: white;
+  color: #7c2d12;
+}
+
+.progress-text {
+  margin-top: 16px;
+  font-size: 14px;
+  opacity: .7;
+}
+
+.progress {
+  margin-top: 8px;
+  height: 9px;
+  background: rgba(255,255,255,.6);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  transition: width .3s ease;
+}
 </style>
 </head>
 
 <body>
-  <div class="app">
-    <h1>💘 Bốc bài iu đương</h1>
-    <div class="subtitle">Một trò chơi để tìm hiểu nhau, không phải thi vấn đáp tình cảm. Bình tĩnh.</div>
+<div class="app">
+  <h1>💘 Bốc bài iu đương</h1>
+  <div class="subtitle">Một cái cớ đáng yêu để hỏi nhau những thứ bình thường không dám hỏi.</div>
 
-    <select id="category">
-      <option value="all">🎲 Random tất cả</option>
-      <option value="warmup">🌼 Khởi động</option>
-      <option value="deep">🌙 Sâu sắc</option>
-      <option value="love">💗 Yêu đương</option>
-      <option value="conflict">⚡ Xung đột</option>
-      <option value="fun">😂 Xàm xí</option>
-    </select>
+  <select id="category" onchange="updateProgress()">
+    <option value="all">🎲 Random tất cả</option>
+    <option value="warmup">🌼 Khởi động</option>
+    <option value="fun">😂 Xàm xí</option>
+    <option value="deep">🌙 Sâu sắc</option>
+    <option value="love">💗 Yêu đương</option>
+    <option value="conflict">⚡ Xung đột</option>
+    <option value="future">🚀 Tương lai</option>
+  </select>
 
+  <div class="card-wrap">
     <div class="card" id="card">
       <div class="tag">Sẵn sàng chưa?</div>
       <div class="question">Bấm “Bốc câu hỏi” để bắt đầu.</div>
+      <div class="hint">Không phải phỏng vấn tuyển người yêu. Thư giãn đi, hai con người nhiều cảm xúc.</div>
     </div>
-
-    <div class="buttons">
-      <button onclick="drawCard()">Bốc câu hỏi</button>
-      <button class="secondary" onclick="resetGame()">Reset bài</button>
-    </div>
-
-    <div class="counter" id="counter">Đã bốc 0 câu</div>
   </div>
+
+  <div class="buttons">
+    <button class="primary" onclick="drawCard()">Bốc câu hỏi</button>
+    <button class="secondary" onclick="resetGame()">Reset bài</button>
+  </div>
+
+  <div class="progress-text" id="progressText">Đã bốc 0 câu</div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+</div>
 
 <script>
 const questions = [
-  { cat: "warmup", label: "🌼 Khởi động", text: "Món ăn yêu thích nhất của anh/em là gì?" },
-  { cat: "warmup", label: "🌼 Khởi động", text: "Bài hát gần đây anh/em nghe nhiều nhất?" },
-  { cat: "warmup", label: "🌼 Khởi động", text: "Một hoạt động cuối tuần lý tưởng là gì?" },
-  { cat: "warmup", label: "🌼 Khởi động", text: "Điều nhỏ nhặt nào làm anh/em vui gần đây?" },
+  {cat:"warmup",label:"🌼 Khởi động",text:"Món ăn yêu thích nhất của anh/em là gì?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Món ăn anh/em ghét nhất là gì?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Bài hát gần đây anh/em nghe nhiều nhất?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Bộ phim anh/em thích nhất gần đây?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Một buổi tối lý tưởng của anh/em trông như thế nào?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Cuối tuần rảnh hoàn toàn thì anh/em muốn làm gì?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Khoảng thời gian yêu thích nhất trong ngày?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Màu sắc yêu thích của anh/em?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Loài vật yêu thích của anh/em?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Món tráng miệng yêu thích?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Quán ăn hoặc nhà hàng yêu thích?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Một nơi anh/em thích đi trốn khi mệt?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Một sở thích nhỏ của anh/em là gì?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Điều nhỏ nhặt nào làm anh/em vui gần đây?"},
+  {cat:"warmup",label:"🌼 Khởi động",text:"Một thứ anh/em luôn muốn mang theo khi ra ngoài?"},
 
-  { cat: "fun", label: "😂 Xàm xí", text: "Nếu nghỉ làm 1 năm mà không lo tiền, anh/em sẽ làm gì?" },
-  { cat: "fun", label: "😂 Xàm xí", text: "Nếu có một siêu năng lực vô dụng, anh/em muốn có năng lực gì?" },
-  { cat: "fun", label: "😂 Xàm xí", text: "Một thói quen hơi kỳ cục của anh/em là gì?" },
-  { cat: "fun", label: "😂 Xàm xí", text: "Nếu tình yêu là một món ăn, hiện tại nó là món gì?" },
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu nghỉ làm 1 năm mà không lo tiền, anh/em sẽ làm gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu trúng 10 tỷ hôm nay, anh/em làm gì đầu tiên?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu có một siêu năng lực vô dụng, anh/em muốn có năng lực gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Một kỹ năng rất vô dụng nhưng anh/em muốn có?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu tình yêu là một món ăn, hiện tại nó là món gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu được đổi nghề trong 1 ngày, anh/em muốn làm nghề gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Một thói quen hơi kỳ cục của anh/em là gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Một việc rất trẻ con nhưng anh/em vẫn thích làm?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu phải ăn một món suốt một tuần, anh/em chọn món gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu được nuôi một con vật kỳ lạ, anh/em chọn con gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Một câu nói cửa miệng của anh/em là gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu đời anh/em là một bộ phim, tên phim là gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Một điều anh/em làm rất dở nhưng vẫn tự tin?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Nếu được quay lại tuổi 18 một ngày, anh/em sẽ làm gì?"},
+  {cat:"fun",label:"😂 Xàm xí",text:"Một thứ anh/em từng mê nhưng giờ thấy hơi buồn cười?"},
 
-  { cat: "deep", label: "🌙 Sâu sắc", text: "Gần đây anh/em đang căng thẳng vì điều gì?" },
-  { cat: "deep", label: "🌙 Sâu sắc", text: "Điều gì làm anh/em cảm thấy được xoa dịu nhất?" },
-  { cat: "deep", label: "🌙 Sâu sắc", text: "Có điều gì anh/em muốn cải thiện trong cuộc sống cá nhân không?" },
-  { cat: "deep", label: "🌙 Sâu sắc", text: "Một nỗi sợ mà anh/em ít khi nói ra là gì?" },
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Gần đây anh/em đang căng thẳng vì điều gì?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Điều gì làm anh/em cảm thấy được xoa dịu nhất?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Có điều gì anh/em muốn cải thiện trong cuộc sống cá nhân không?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Một nỗi sợ mà anh/em ít khi nói ra là gì?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Điều gì người khác thường hiểu lầm về anh/em?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Khi quá tải, dấu hiệu dễ nhận thấy nhất của anh/em là gì?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Điều gì khiến anh/em cảm thấy hạnh phúc nhất gần đây?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Điều gì khiến anh/em buồn nhất trong thời gian gần đây?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Một trải nghiệm tuổi thơ hạnh phúc nhất của anh/em?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Một trải nghiệm tuổi thơ buồn hoặc khó quên?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Một sự kiện quan trọng đã ảnh hưởng nhiều đến anh/em?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Ai là người từng giúp đỡ anh/em rất nhiều?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Hai người anh/em ngưỡng mộ nhất là ai?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Một điều anh/em đang băn khoăn hoặc lo lắng?"},
+  {cat:"deep",label:"🌙 Sâu sắc",text:"Một điều anh/em muốn được người khác công nhận hơn?"},
 
-  { cat: "love", label: "💗 Yêu đương", text: "Điều gì khiến anh/em cảm thấy được yêu?" },
-  { cat: "love", label: "💗 Yêu đương", text: "Khoảnh khắc nào của hai đứa làm anh/em nhớ nhất?" },
-  { cat: "love", label: "💗 Yêu đương", text: "Anh/em thích được quan tâm theo cách nào nhất?" },
-  { cat: "love", label: "💗 Yêu đương", text: "Điều gì ở người kia khiến anh/em thấy an toàn?" },
+  {cat:"love",label:"💗 Yêu đương",text:"Điều gì khiến anh/em cảm thấy được yêu?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Anh/em thích được quan tâm theo cách nào nhất?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Điều gì ở người kia khiến anh/em thấy an toàn?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Điều gì ở người kia khiến anh/em thấy đáng yêu nhất?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Khoảnh khắc nào của hai đứa làm anh/em nhớ nhất?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Một điều anh/em muốn hai đứa làm cùng nhau nhiều hơn?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Điều gì khiến anh/em thấy gần gũi với người yêu nhất?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Điều gì khiến anh/em thấy được thấu hiểu trong tình yêu?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Một điều nhỏ người kia làm nhưng khiến anh/em vui?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Anh/em nghĩ điểm mạnh nhất của hai đứa là gì?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Một điều anh/em muốn người kia hiểu hơn về mình?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Khi nhớ người kia, anh/em thường muốn làm gì?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Điều gì khiến anh/em thấy tự hào về mối quan hệ này?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Nếu mô tả tình yêu của hai đứa bằng 3 từ, anh/em chọn gì?"},
+  {cat:"love",label:"💗 Yêu đương",text:"Một khoảnh khắc anh/em thấy mình được chọn là khi nào?"},
 
-  { cat: "conflict", label: "⚡ Xung đột", text: "Khi giận, anh/em muốn nói ngay hay cần thời gian?" },
-  { cat: "conflict", label: "⚡ Xung đột", text: "Một giới hạn rất quan trọng của anh/em là gì?" },
-  { cat: "conflict", label: "⚡ Xung đột", text: "Khi buồn, anh/em muốn được dỗ kiểu nào?" },
-  { cat: "conflict", label: "⚡ Xung đột", text: "Điều gì dễ khiến anh/em cảm thấy bị bỏ quên?" }
+  {cat:"conflict",label:"⚡ Xung đột",text:"Khi giận, anh/em muốn nói ngay hay cần thời gian?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Một giới hạn rất quan trọng của anh/em là gì?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Khi buồn, anh/em muốn được dỗ kiểu nào?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Điều gì dễ khiến anh/em cảm thấy bị bỏ quên?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Anh/em muốn người kia xin lỗi như thế nào?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Có chuyện nhỏ nào nhưng rất dễ làm anh/em khó chịu không?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Khi căng thẳng, anh/em thường cần người kia làm gì?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Điều gì khiến anh/em cảm thấy không được tôn trọng?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Anh/em thường im lặng khi nào?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Khi tranh luận, điều gì làm anh/em dịu xuống nhanh nhất?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Một câu nói nào anh/em rất không thích nghe khi đang buồn?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Anh/em muốn người kia phản ứng thế nào khi anh/em nói 'không sao'?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Điều gì anh/em thấy khó tha thứ trong tình yêu?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Khi cần không gian riêng, anh/em muốn nói thế nào để người kia không buồn?"},
+  {cat:"conflict",label:"⚡ Xung đột",text:"Một điều hai đứa nên thống nhất để tránh hiểu lầm là gì?"},
+
+  {cat:"future",label:"🚀 Tương lai",text:"Một điều anh/em đang mong ước trong thời gian tới?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Nếu 5 năm nữa nhìn lại, anh/em muốn tự hào về điều gì?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Một mục tiêu cá nhân anh/em rất muốn hoàn thành?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Anh/em muốn cuộc sống lý tưởng của mình có cảm giác như thế nào?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Có tham vọng thầm kín nào anh/em chưa kể không?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Một nơi anh/em muốn đi cùng người kia là đâu?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Anh/em muốn phát triển bản thân theo hướng nào?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Điều gì anh/em muốn học thêm trong tương lai?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Nếu được thiết kế một ngày hoàn hảo cho hai đứa, nó sẽ như thế nào?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Anh/em muốn hai đứa duy trì thói quen gì cùng nhau?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Một điều anh/em muốn thử nhưng chưa dám thử?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Anh/em nghĩ điều gì sẽ làm mối quan hệ này bền hơn?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Trong tương lai, anh/em muốn được người kia ủng hộ điều gì nhất?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Một chuyến đi mơ ước của anh/em là gì?"},
+  {cat:"future",label:"🚀 Tương lai",text:"Nếu đặt tên cho chương tiếp theo của cuộc đời mình, anh/em đặt là gì?"}
 ];
 
 let used = [];
 
-function drawCard() {
+function getFilteredQuestions() {
   const selected = document.getElementById("category").value;
-
-  const available = questions
+  return questions
     .map((q, i) => ({ ...q, index: i }))
-    .filter(q => !used.includes(q.index))
     .filter(q => selected === "all" || q.cat === selected);
+}
 
-  if (available.length === 0) {
-    document.getElementById("card").innerHTML = `
-      <div class="tag">Hết bài rồi</div>
-      <div class="question">Reset đi. Tình yêu cũng cần làm mới dữ liệu.</div>
+function drawCard() {
+  const card = document.getElementById("card");
+  card.classList.add("flip");
+
+  setTimeout(() => {
+    const filtered = getFilteredQuestions();
+    const available = filtered.filter(q => !used.includes(q.index));
+
+    if (available.length === 0) {
+      card.innerHTML = `
+        <div class="tag">Hết bài rồi</div>
+        <div class="question">Reset đi. Tình yêu cũng cần làm mới dữ liệu.</div>
+        <div class="hint">Đừng cố bốc nữa. Đây không phải máy gacha.</div>
+      `;
+      card.classList.remove("flip");
+      updateProgress();
+      return;
+    }
+
+    const pick = available[Math.floor(Math.random() * available.length)];
+    used.push(pick.index);
+
+    card.innerHTML = `
+      <div class="tag">${pick.label}</div>
+      <div class="question">${pick.text}</div>
+      <div class="hint">Trả lời thật. Không cần hay. Không cần đúng. Đời đã đủ giả trân rồi.</div>
     `;
-    return;
-  }
 
-  const pick = available[Math.floor(Math.random() * available.length)];
-  used.push(pick.index);
-
-  document.getElementById("card").innerHTML = `
-    <div class="tag">${pick.label}</div>
-    <div class="question">${pick.text}</div>
-  `;
-
-  document.getElementById("counter").innerText = `Đã bốc ${used.length} câu`;
+    card.classList.remove("flip");
+    updateProgress();
+  }, 220);
 }
 
 function resetGame() {
@@ -204,9 +326,26 @@ function resetGame() {
   document.getElementById("card").innerHTML = `
     <div class="tag">Reset xong</div>
     <div class="question">Bốc lại đi, đôi chim cu nghiệp dư.</div>
+    <div class="hint">Lần này cố đừng biến một câu hỏi thành phiên tòa cảm xúc.</div>
   `;
-  document.getElementById("counter").innerText = "Đã bốc 0 câu";
+  updateProgress();
 }
+
+function updateProgress() {
+  const filtered = getFilteredQuestions();
+  const selectedIndexes = filtered.map(q => q.index);
+  const usedInCategory = used.filter(i => selectedIndexes.includes(i)).length;
+  const total = filtered.length;
+  const percent = total === 0 ? 0 : (usedInCategory / total) * 100;
+
+  document.getElementById("progressText").innerText =
+    `Đã bốc ${usedInCategory}/${total} câu trong nhóm này`;
+
+  document.getElementById("bar").style.width = percent + "%";
+}
+
+updateProgress();
 </script>
 </body>
+</html>body>
 </html>
